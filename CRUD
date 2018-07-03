@@ -1,2 +1,24 @@
-print ("Hello word")
-ualalaalal
+from tkinter import *
+import _md5
+from tkinter import messagebox
+ventana = Tk()
+ventana.title("----------Sistema de Login-------------")
+ventana.geometry("320x80+500+250")
+Label(ventana,text="Password:").pack()
+caja= Entry(ventana,show="*")
+caja.pack()
+def codificar(x):
+ a=_md5.new()
+ a.update(x)
+ return a.hexdigest()
+def login(object):
+ e=caja.get()
+ m=codificar(e)
+ if m == "b8f002559f4cfc740db2de36535cac6b":
+  showinfo(tittle="Logeo Correcto",message="El hash ha sido activado exitosamente")
+ else:
+  showerror(tittle="Logeo Incorrecto",message="Error de validacion")
+Button(text="Logear",command=login).pack()
+ventana.bind("<Return>",login)
+
+ventana.mainloop()
